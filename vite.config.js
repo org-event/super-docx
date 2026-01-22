@@ -5,5 +5,9 @@ export default defineConfig({
     plugins: [vue()],
     optimizeDeps: {
         include: ['superdoc']
+    },
+    server: {
+        host: true,
+        allowedHosts: true
     }
 });
