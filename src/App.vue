@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <header>
+    <header class="header">
       <h1>SuperDoc Example</h1>
       <button @click="fileInput?.click()">Load Document</button>
       <input 
@@ -74,6 +74,14 @@ header button:hover {
 
 main {
   flex: 1;
-  padding: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+    position: fixed;
+    top: 3rem;
+    left: 3rem;
+    z-index: 9;
 }
 </style>

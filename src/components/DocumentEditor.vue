@@ -83,17 +83,19 @@ onUnmounted(() => {
 });
 </script>
 
-<style scoped>
+<style>
 .editor-container {
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  align-items: center; */
+  height: 100%;
+  overflow: hidden;
 }
 .document-editor {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
+  
 }
 
 .toolbar {
@@ -107,7 +109,24 @@ onUnmounted(() => {
   justify-content: center;
   flex: 1 1 auto;
   overflow: auto;
-  margin-top: 10px;
+  margin: 0;
   min-height: 400px; /* Ensure editor has minimum height */
+  background-color: #f5f5f5;
+}
+.super-editor{
+    background-color: white;
+    padding-bottom: 1rem;
+}
+
+.editor-element{
+    background-color: #fff;
+}
+.pagination-separator {
+    background-color: #f5f5f5;
+}
+
+/* Force standard page width (Letter/A4 approx) */
+.pagination-inner {
+  width: 816px !important;
 }
 </style>
