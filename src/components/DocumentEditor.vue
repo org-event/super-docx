@@ -1,8 +1,13 @@
 <template>
-  <div class="document-editor">
-    <div :key="documentKey" class="editor-container">
-      <div id="superdoc-toolbar" class="toolbar"></div>
-      <div id="superdoc" class="editor"></div>
+  <div>
+    <div>
+      <button class="dev-app__header-export-btn" @click="logDocumentStructure">Log Structure</button>
+    </div>
+    <div class="document-editor">
+      <div :key="documentKey" class="editor-container">
+        <div id="superdoc-toolbar" class="toolbar"></div>
+        <div id="superdoc" class="editor"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -36,12 +41,24 @@ const destroyEditor = () => {
   }
 };
 
+const logDocumentStructure = () => {
+  const editorInstance = editor.value?.editor || editor.value;
+  console.log('Document Structure (JSON):', editor.value.activeEditor.getJSON());
+  if (editorInstance && typeof editorInstance.getJSON === 'function') {
+    console.log('Document Structure (JSON):', editorInstance.getJSON());
+    // Also log plain text for convenience
+    // console.log('Document Text:', editorInstance.state.doc.textBetween(0, editorInstance.state.doc.content.size, '\n', '\n'));
+  } else {
+    console.warn('[Dev] No active editor found or getJSON not supported', editor.value);
+  }
+};
+
 // Function to initialize editor
 const initializeEditor = async () => {
   try {
     // Ensure cleanup of previous instance
     destroyEditor();
-    
+
     // Increment key to force re-render
     documentKey.value++;
 
@@ -95,7 +112,7 @@ onUnmounted(() => {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  
+
 }
 
 .toolbar {
@@ -127,6 +144,6 @@ onUnmounted(() => {
 
 /* Force standard page width (Letter/A4 approx) */
 .pagination-inner {
-  width: 816px !important;
+  width: 814px !important;
 }
 </style>
